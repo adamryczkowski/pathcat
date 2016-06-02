@@ -1,0 +1,16 @@
+Package: pathcat
+Type: Package
+Title: Provides path.cat and make.path.relative functions, that enhance
+    system.path() function that concatenates paths.
+Version: 1.0.0
+Authors@R: person("Adam", "Ryczkowski", email = "adam@statystyka.net", role = c("aut", "cre"))
+Description: path.cat unwinds '..' into actually removing last folder from the
+    path. make.path.relative finds the youngest common ancestor of both directories,
+    and removes it from the path given in the second argument (target.path) All
+    functions allow for mixing '/' with '\' on each path, treating both characters
+    equally (so you can't have a filename with backslash even if you are on Linux)
+License: GPL-3
+LazyData: TRUE
+Imports:
+    stringi (>= 1.1.1)
+RoxygenNote: 5.0.1
