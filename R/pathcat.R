@@ -78,7 +78,6 @@ path.cat<-function(...,fsep=.Platform$file.sep)
   elems<-strsplit(sciezka,'[/\\]',fixed=FALSE)[[1]]
   elems<-elems[elems!='']
 
-  it<-ihasNext(iter(elems))
   out<-rep(NA,length(elems))
   i<-1
   for(item in elems)
