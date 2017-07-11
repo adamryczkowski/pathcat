@@ -83,7 +83,17 @@ path.cat<-function(...,fsep=.Platform$file.sep)
   for(item in elems)
   {
     if(item=='..')   {
-      i<-max(1,i-1)
+      if (i <= 1) {
+        out[i] <- item
+        i<-i+1
+      } else {
+        if(out[[i-1]] != '..') {
+          i<-max(1,i-1)
+        } else {
+          out[i] <- item
+          i<-i+1
+        }
+      }
     } else  {
       out[i]<-item
       i<-i+1
