@@ -27,3 +27,27 @@ test_that("Corner case for 2 identical paths in make.path.relative", {
   expect_equal(make.path.relative("/home/adam","/home/adam"),"")
 })
 
+test_that("Relative paths", {
+  expect_equal(path.cat("","home/adam"),"home/adam")
+})
+
+test_that("Relative paths", {
+  expect_equal(path.cat("..","home/adam"),"../home/adam")
+})
+
+
+test_that("Relative paths", {
+  expect_equal(path.cat("root","..", "home/adam"),"home/adam")
+})
+
+test_that("Relative paths", {
+  expect_equal(path.cat("","..", "home/adam"),"../home/adam")
+})
+
+test_that("Relative paths", {
+  expect_equal(path.cat("..","..", "home/adam"),"../../home/adam")
+})
+
+test_that("Relative paths", {
+  expect_equal(path.cat("","../adam"),"../../home/adam")
+})
