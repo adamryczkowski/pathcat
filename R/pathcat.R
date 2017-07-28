@@ -118,6 +118,10 @@ path.cat<-function(...,fsep=.Platform$file.sep)
 #' @export
 make.path.relative<-function(base.path, target.path, fsep=.Platform$file.sep)
 {
+  if(length(pathcat:::which.paths.are.absolute(c(base.path, target.path)))<2) {
+    return(target.path)
+  }
+
   base.s<-strsplit(path.cat(base.path,fsep='/'),'/',fixed=TRUE)[[1]]
   target.s<-strsplit(path.cat(target.path,fsep='/'),'/',fixed=TRUE)[[1]]
   idx<-1
