@@ -21,7 +21,7 @@ which.paths.are.absolute<-function(paths)
 #' If not absolute path, return undefined
 split.absolute.prefix<-function(abs.path)
 {
-  ans<-stringi::stri_match_all(str=abs.path, regex="^(([^\\\\/^\\\\^:]+:)?)[\\\\/\\\\]([^\\\\/^\\\\]+.*)$")
+  ans<-stringi::stri_match_all(str=abs.path, regex="^(([^\\\\/^\\\\^:]+:)?)[\\\\/\\\\]([^\\\\/^\\\\]*.*)$")
   return(list(prefix=ans[[1]][[2]],dirs=ans[[1]][[4]]))
 }
 
@@ -45,6 +45,14 @@ split.absolute.prefix<-function(abs.path)
 #' @export
 #' @seealso \code{\link[base]{file.path}}
 path.cat<-function(...,fsep=.Platform$file.sep)
+{
+  elems<-list(...)
+  max_length <- max(sapply(elems, length))
+  args<-lapply(elems, rep, length.out = max_length)
+  as.character(do.call(mapply, c(FUN=path.cat_1, args, fsep=fsep)))
+}
+
+path.cat_1<-function(...,fsep=.Platform$file.sep)
 {
   elems<-list(...)
   elems<-as.character(elems)
@@ -103,6 +111,7 @@ path.cat<-function(...,fsep=.Platform$file.sep)
   paste0(prefix, do.call(function(...) file.path(fsep=fsep, ...),as.list(out[1:i-1])))
 }
 
+
 #' Converts one absolute path into relative
 #'
 #' The algorithm produces a relative path, that addresses \code{target.path} from
@@ -117,6 +126,14 @@ path.cat<-function(...,fsep=.Platform$file.sep)
 #'
 #' @export
 make.path.relative<-function(base.path, target.path, fsep=.Platform$file.sep)
+{
+  max_length <- max(length(base.path), length(target.path))
+  args<-list(base.path=rep(base.path, length.out=max_length),
+             target.path=rep(target.path,length.out=max_length))
+  as.character(do.call(mapply, c(FUN=make.path.relative_1, args, fsep=fsep)))
+}
+
+make.path.relative_1<-function(base.path, target.path, fsep=.Platform$file.sep)
 {
   if(length(pathcat:::which.paths.are.absolute(c(base.path, target.path)))<2) {
     return(target.path)

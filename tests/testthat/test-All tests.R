@@ -49,5 +49,21 @@ test_that("Relative paths", {
 })
 
 test_that("Relative paths", {
-  expect_equal(path.cat("","../adam"),"../../home/adam")
+  expect_equal(path.cat("","../adam"),"../adam")
+})
+
+test_that("Multiple paths", {
+  testthat::expect_equivalent(
+    make.path.relative('/home/adam/Videos/tmp', c('/home/adam/Videos/tmp/Jednorazowe', '/home/adam/Videos/tmp/Tutoriale/SciShow', '/home/adam/Videos/Zosia')),
+    c('Jednorazowe', 'Tutoriale/SciShow', '../Zosia'))
+
+  testthat::expect_equivalent(
+    path.cat('bla',c('adam','mi', 'w'), fsep='/'),
+    c('bla/adam', 'bla/mi', 'bla/w')
+  )
+
+})
+
+test_that("Strange paths", {
+  testthat::expect_equal(path.cat("","adam", '/', 'a'), '/a')
 })
