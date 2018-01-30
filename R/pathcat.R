@@ -163,3 +163,19 @@ make.path.relative_1<-function(base.path, target.path, fsep=.Platform$file.sep)
   ans<-paste(ans,collapse=fsep)
   return(ans)
 }
+
+
+#' Removes all extensions from the file. Based on the tools::file_path_sans_ext
+#'
+#' @param path Path from which the extensions will be removed
+#' @return Character string with the path without all extensions from the \code{basename(path)} removed.
+#'
+#' @export
+file_path_sans_all_ext<-function(path) {
+  oldpath<-''
+  while(newpath!=path) {
+    oldpath<-path
+    path<-tools::file_path_sans_ext(path)
+  }
+  return(path)
+}
