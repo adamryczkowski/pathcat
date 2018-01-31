@@ -179,3 +179,13 @@ file_path_sans_all_ext<-function(path) {
   }
   return(path)
 }
+
+#' Checks whether a given path is absolute, or not
+#'
+#' @param path Path to assess.
+#' @return Boolean
+#'
+#' @export
+is_absolute_path <- function(path) {
+  grepl("^(/|[A-Za-z]:|\\\\|~)", path)
+}
