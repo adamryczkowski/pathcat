@@ -11,4 +11,3 @@ If not absolute path, return undefined}
 Splits the absolute path into the absolute part (e.g. '/' or 'H:\\') and the rest.
 If not absolute path, return undefined
 }
-

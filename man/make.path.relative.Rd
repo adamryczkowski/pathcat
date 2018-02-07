@@ -21,4 +21,3 @@ from \code{base.path}.
 The algorithm produces a relative path, that addresses \code{target.path} from
 \code{base.path} using folder names and special name \code{..} for parent folder.
 }
-

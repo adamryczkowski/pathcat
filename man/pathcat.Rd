@@ -13,4 +13,3 @@ inputing subsequent path components into separate \code{setwd} commands.
 All functions allow for mixing '/' with '\' on each path, treating both characters
  equally (so you can't have a filename with backslash even if you are on Linux)
 }
-

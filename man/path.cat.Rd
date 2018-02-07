@@ -29,4 +29,3 @@ This way it enhances \code{file.path} with two features:
 \seealso{
 \code{\link[base]{file.path}}
 }
-

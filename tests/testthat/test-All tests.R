@@ -67,3 +67,7 @@ test_that("Multiple paths", {
 test_that("Strange paths", {
   testthat::expect_equal(path.cat("","adam", '/', 'a'), '/a')
 })
+
+test_that("Test for skipping coma", {
+  testthat::expect_equal(path.cat("","adam", '.', 'a'), 'adam/a')
+})

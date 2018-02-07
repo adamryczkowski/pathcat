@@ -9,4 +9,3 @@ which.paths.are.absolute(paths)
 \description{
 Returns indices of paths that are absolute
 }
-

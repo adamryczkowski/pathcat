@@ -84,7 +84,7 @@ path.cat_1<-function(...,fsep=.Platform$file.sep)
   elems<-elems[start:length(elems)]
   sciezka<-do.call(function(...) file.path(fsep=fsep, ...),as.list(elems))
   elems<-strsplit(sciezka,'[/\\]',fixed=FALSE)[[1]]
-  elems<-elems[elems!='']
+  elems<-elems[!elems %in% c('', '.') ]
 
   out<-rep(NA,length(elems))
   i<-1
